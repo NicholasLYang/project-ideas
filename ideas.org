@@ -1,0 +1,16 @@
+#+TITLE: Project Ideas
+
+Just a bunch of project ideas that I have
+
+- ChanceMe
+  - Idea: Help high school students find colleges that fit their needs, budget, and scores
+  - Stack: React/Rails
+  - Progress: Working to MVP
+- SiteSpite
+  - Idea: Complain about bad sites, bugs, stupid changes, etc.
+  - Stack: Phoenix/ReasonML (planned)
+  - Progress: Preliminary work
+- GraphQL Framework
+  - Idea: Minimalist framework centered around GraphQL, Rails-esque ease of use minus Rails bloat.
+  - Stack: TBD
+  - Progress: None
