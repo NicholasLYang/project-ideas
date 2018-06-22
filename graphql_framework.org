@@ -1,0 +1,72 @@
+#+TITLE: GraphQL Framework
+
+* Idea
+ A framework based around GraphQL that takes the ease of use of Rails
+ and strips out all the crud. Allows for fast, easy to build APIs
+
+* Key Features
+ - Easy GraphQL Object Type definition (integrated with classes ideally)
+ - Automated queries:
+
+#+BEGIN_SRC ruby
+class Article < GraphQL::Object
+  query_on :title  # Makes the query article_by_title
+end
+#+END_SRC
+
+- Well integrated ORM for automatic field resolving:
+
+#+BEGIN_SRC ruby
+class Article < GraphQL::Object
+
+  # Fields
+  field :title, types.String
+  field :title, types[Comment]
+
+  # Queries
+  query_on :title
+
+  # Associations
+  belongs_to :section
+  has_many :comments # Could be optional, since fields already specifies this
+end
+
+class Comment < GraphQL::Object  
+  # Fields
+  field :content, types.String
+
+end
+#+END_SRC
+
+Should allow for:
+
+#+BEGIN_SRC
+article_by_title {
+  title
+  comments {
+    content
+  }
+}
+#+END_SRC
+
+- GraphQL by default, no REST (not that REST is bad, just that GraphQL always feels tacked on)
+
+- Super nice code generation. Able to introspect and see what generators have been applied (migrations for generators?)
+
+- Decent JWT support
+
+- Authorization levels
+
+* Design Questions
+
+- What language? Ruby is probably easiest, but least popular.
+  - Could start in one language then port over to others like JS
+  - Try Crystal? Elixir?
+
+- What name? Lattice? Ruby on Lattice?
+
+- How should middleware work?
+
+- How can we get authorization and authentication to work smoothly?
+
+- How can we improve error handling from GraphQL-Ruby?

@@ -1,0 +1,116 @@
+% Created 2018-06-21 Thu 20:24
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\tolerance=1000
+\author{Nicholas Yang}
+\date{\today}
+\title{GraphQL Framework}
+\hypersetup{
+  pdfkeywords={},
+  pdfsubject={},
+  pdfcreator={Emacs 25.2.1 (Org mode 8.2.10)}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+
+\section{Idea}
+\label{sec-1}
+A framework based around GraphQL that takes the ease of use of Rails
+and strips out all the crud. Allows for fast, easy to build APIs
+
+\section{Key Features}
+\label{sec-2}
+\begin{itemize}
+\item Easy GraphQL Object Type definition (integrated with classes ideally)
+\item Automated queries:
+\end{itemize}
+
+\begin{verbatim}
+class Article < GraphQL::Object
+  query_on :title  # Makes the query article_by_title
+end
+\end{verbatim}
+
+\begin{itemize}
+\item Well integrated ORM for automatic field resolving:
+\end{itemize}
+
+\begin{verbatim}
+class Article < GraphQL::Object
+
+  # Fields
+  field :title, types.String
+  field :title, types[Comment]
+
+  # Queries
+  query_on :title
+
+  # Associations
+  belongs_to :section
+  has_many :comments # Could be optional, since fields already specifies this
+end
+
+class Comment < GraphQL::Object  
+  # Fields
+  field :content, types.String
+
+end
+\end{verbatim}
+
+Should allow for:
+
+\begin{verbatim}
+article_by_title {
+  title
+  comments {
+    content
+  }
+}
+\end{verbatim}
+
+\begin{itemize}
+\item GraphQL by default, no REST (not that REST is bad, just that GraphQL always feels tacked on)
+
+\item Super nice code generation. Able to introspect and see what generators have been applied (migrations for generators?)
+
+\item Decent JWT support
+
+\item Authorization levels
+\end{itemize}
+
+\section{Design Questions}
+\label{sec-3}
+
+\begin{itemize}
+\item What language? Ruby is probably easiest, but least popular.
+\begin{itemize}
+\item Could start in one language then port over to others like JS
+\item Try Crystal? Elixir?
+\end{itemize}
+
+\item What name? Lattice? Ruby on Lattice?
+
+\item How should middleware work?
+
+\item How can we get authorization and authentication to work smoothly?
+
+\item How can we improve error handling from GraphQL-Ruby?
+\end{itemize}
+% Emacs 25.2.1 (Org mode 8.2.10)
+\end{document}
