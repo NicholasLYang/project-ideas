@@ -10,7 +10,7 @@
 
 #+BEGIN_SRC ruby
 class Article < GraphQL::Object
-  query_on :title  # Makes the query article_by_title
+  query_on :title  # 9Makes the query article_by_title
 end
 #+END_SRC
 
@@ -56,6 +56,8 @@ article_by_title {
 - Decent JWT support
 
 - Authorization levels
+
+- Instead of Model-View-Controller, how about Model-Resolver-Query? Or Model-Resolver-Query-Mutation?
 
 * Design Questions
 

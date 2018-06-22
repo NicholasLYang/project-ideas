@@ -1,4 +1,4 @@
-% Created 2018-06-21 Thu 20:24
+% Created 2018-06-21 Thu 20:26
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -43,7 +43,7 @@ and strips out all the crud. Allows for fast, easy to build APIs
 
 \begin{verbatim}
 class Article < GraphQL::Object
-  query_on :title  # Makes the query article_by_title
+  query_on :title  # 9Makes the query article_by_title
 end
 \end{verbatim}
 
@@ -92,6 +92,8 @@ article_by_title {
 \item Decent JWT support
 
 \item Authorization levels
+
+\item Instead of Model-View-Controller, how about Model-Resolver-Query? Or Model-Resolver-Query-Mutation?
 \end{itemize}
 
 \section{Design Questions}
